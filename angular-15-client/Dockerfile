@@ -1,5 +1,5 @@
 # Stage 1: Build Angular application
-FROM node:14 AS build
+FROM node:18 AS build
 RUN npm install -g @angular/cli
 WORKDIR /app
 
