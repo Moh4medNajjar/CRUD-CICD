@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose"); // Import mongoose module
 
 const app = express();
 
@@ -14,7 +15,10 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+// Set strictQuery to true to suppress the warning
 mongoose.set('strictQuery', true);
+
 const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
@@ -34,7 +38,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./app/routes/turorial.routes")(app);
+require("./app/routes/tutorial.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 9090;
